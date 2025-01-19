@@ -49,6 +49,7 @@
                 </div>
                 <div class="text-center mt-4">
                     <a href="{{ route('students.index') }}" class="btn btn-primary">Back to List</a>
+                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning">Edit Student</a>
                 </div>
             </div>
         </div>
@@ -58,3 +59,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

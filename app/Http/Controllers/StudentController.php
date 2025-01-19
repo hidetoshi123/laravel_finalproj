@@ -35,6 +35,13 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
         $student->delete();
+
+        // Decrement IDs
+        $students = Student::where('id', '>', $id)->orderBy('id')->get();
+        foreach ($students as $student) {
+            $student->decrement('id');
+        }
+
         return redirect()->route('students.index')->with('success', 'Student deleted successfully');
     }
 

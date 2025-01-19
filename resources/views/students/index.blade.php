@@ -7,6 +7,17 @@
 </head>
 <body>
     <div class="container mt-5">
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <h2 class="mb-4">Add New Student</h2>
         <form method="POST" enctype="multipart/form-data">
             @csrf
@@ -24,13 +35,24 @@
             </div>
             <div class="form-group">
                 <label for="grade">Grade:</label>
-                <input type="text" class="form-control" id="grade" name="grade" required>
+                <select class="form-control" id="grade" name="grade" required>
+                    <option value="1.0">1.0</option>
+                    <option value="1.25">1.25</option>
+                    <option value="1.50">1.50</option>
+                    <option value="1.75">1.75</option>
+                    <option value="2.0">2.0</option>
+                    <option value="2.25">2.25</option>
+                    <option value="2.50">2.50</option>
+                    <option value="2.75">2.75</option>
+                    <option value="3.0">3.0</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="contact">Contact:</label>
                 <input type="text" class="form-control" id="contact" name="contact" required>
             </div>
             <button type="submit" class="btn btn-primary">Add Student</button>
+            <a href="{{ route('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
         </form>
     </div>
     <div class="container mt-5">

@@ -11,6 +11,9 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="p-6 text-center">
+                    <a href="{{ route('students.index') }}" class="btn btn-primary" style="display: inline-block; margin: 0 auto; padding: 10px 20px; background-color: #007bff; color: white; text-align: center; border-radius: 5px;">Student Management System</a>
+                </div>
             </div>
         </div>
     </div>

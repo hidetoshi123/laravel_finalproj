@@ -51,7 +51,7 @@
                 @foreach($students as $student)
                     <tr>
                         <td>{{ $student->id }}</td>
-                        <td><img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="70" height="70" class="img-thumbnail"></td>
+                        <td class="text-center"><img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="100" height="100" class="img-thumbnail"></td>
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->age }}</td>
                         <td>{{ $student->grade }}</td>

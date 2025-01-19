@@ -5,29 +5,47 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <style>
-        .profile-picture {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        body {
+            background-color: #f8f9fa;
         }
-        .form-row {
-            display: flex;
-            justify-content: space-between;
+        .navbar-brand {
+            font-size: 1.5rem;
         }
-        .form-group {
-            flex: 1;
-            margin: 0 10px;
+        .container {
+            max-width: 900px;
+        }
+        .card {
+            margin-top: 50px;
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .form-group label {
+            font-weight: bold;
         }
         .button-group {
             margin-top: 20px;
         }
-        .card {
-            margin-top: 50px;
+        .profile-picture img {
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Student Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <!-- Add navigation items here if needed -->
+            </ul>
+        </div>
+    </nav>
     <div class="container mt-5">
         <div class="card">
             <div class="card-header text-center">
@@ -37,26 +55,25 @@
                 <form method="POST" action="{{ route('students.update', $student->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="profile-picture mb-4">
-                        <img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="100" height="100" class="img-thumbnail mt-2">
-                        <label for="profile_picture">Profile Picture:</label>
-                        <div class="text-center">
+                    <div class="profile-picture mb-4 text-center">
+                        <img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="150" height="150" class="img-thumbnail mt-2">
+                        <div class="mt-3">
+                            <label for="profile_picture">Profile Picture:</label>
                             <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="name">Name:</label>
                             <input type="text" class="form-control" id="name" name="name" value="{{ $student->name }}" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="age">Age:</label>
                             <input type="number" class="form-control" id="age" name="age" value="{{ $student->age }}" required>
                         </div>
                     </div>
                     <div class="form-row">
-
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="grade">Grade:</label>
                             <select class="form-control" id="grade" name="grade" required>
                                 <option value="1.0" {{ $student->grade == '1.0' ? 'selected' : '' }}>1.0</option>
@@ -70,16 +87,14 @@
                                 <option value="3.0" {{ $student->grade == '3.0' ? 'selected' : '' }}>3.0</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <label for="contact">Contact:</label>
                             <input type="text" class="form-control" id="contact" name="contact" value="{{ $student->contact }}" required>
                         </div>
                     </div>
                     <div class="text-center button-group">
                         <button type="submit" class="btn btn-primary">Update Student</button>
-                    </div>
-                    <div class="text-center button-group">
-                        <a href="{{ route('students.index') }}" class="btn btn-secondary">Back to List</a>
+                        <a href="{{ route('students.index') }}" class="btn btn-secondary ml-2">Back to List</a>
                     </div>
                 </form>
             </div>

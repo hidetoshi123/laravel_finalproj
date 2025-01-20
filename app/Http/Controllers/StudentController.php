@@ -74,6 +74,9 @@ class StudentController extends Controller
         // Handle profile picture upload
         if ($request->hasFile('profile_picture')) {
             $validatedData['profile_picture'] = $request->file('profile_picture')->store('profile_pictures', 'public');
+        } else {
+            // Set default profile picture if none is uploaded
+            $validatedData['profile_picture'] = 'profile_pictures/default.png';
         }
 
         Student::create($validatedData);

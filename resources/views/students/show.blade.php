@@ -59,20 +59,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('students.index') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('students.create') }}">Add Student</a>
-                </li>
             </ul>
         </div>
     </nav>
     <div class="container">
-        <h2 class="mb-4 text-center">Student Details</h2>
         <div class="card">
-            <div class="card-header center-text">
-                <h3>Student Information</h3>
+            <div class="card-header text-center">
+                <h2>Student Information</h2>
             </div>
             <div class="card-body">
                 <div class="profile-container">

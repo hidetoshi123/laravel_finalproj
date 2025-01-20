@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Student</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <style>
@@ -56,9 +55,9 @@
                     @csrf
                     @method('PUT')
                     <div class="profile-picture mb-4 text-center">
-                        <img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="150" height="150" class="img-thumbnail mt-2">
                         <div class="mt-3">
-                            <label for="profile_picture">Profile Picture:</label>
+                            <label for="profile_picture"></label>
+                            <img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="150" height="150" class="img-thumbnail mt-2">
                             <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
                         </div>
                     </div>

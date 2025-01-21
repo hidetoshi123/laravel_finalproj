@@ -97,7 +97,6 @@
                                     <th>Age</th>
                                     <th>Grade</th>
                                     <th>Contact</th>
-                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,20 +104,15 @@
                                     @if(stripos($student->name, request()->query('search')) !== false)
                                         <tr>
                                             <td>{{ $student->id }}</td>
-                                            <td class="text-center"><img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="150" height="150" class="img-thumbnail"></td>
+                                            <td class="text-center">
+                                                <a href="{{ route('students.show', $student->id) }}">
+                                                    <img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="150" height="150" class="img-thumbnail">
+                                                </a>
+                                            </td>
                                             <td>{{ $student->name }}</td>
                                             <td>{{ $student->age }}</td>
                                             <td>{{ $student->grade }}</td>
                                             <td>{{ $student->contact }}</td>
-                                            <td>
-                                                <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">View</a>
-                                                <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                </form>
-                                            </td>
                                         </tr>
                                     @endif
                                 @endforeach
@@ -140,7 +134,11 @@
                             @foreach($students as $student)
                                 <tr>
                                     <td>{{ $student->id }}</td>
-                                    <td class="text-center"><img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="150" height="150" class="img-thumbnail"></td>
+                                    <td class="text-center">
+                                        <a href="{{ route('students.show', $student->id) }}">
+                                            <img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="150" height="150" class="img-thumbnail">
+                                        </a>
+                                    </td>
                                     <td>{{ $student->name }}</td>
                                     <td>{{ $student->age }}</td>
                                     <td>{{ $student->grade }}</td>

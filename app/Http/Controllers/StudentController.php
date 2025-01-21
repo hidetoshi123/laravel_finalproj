@@ -55,6 +55,10 @@ class StudentController extends Controller
             'contact' => 'required|string|max:255',
         ]);
 
+        if ($request->hasFile('profile_picture')) {
+            $validatedData['profile_picture'] = $request->file('profile_picture')->store('profile_pictures', 'public');
+        }
+
         $student = Student::findOrFail($id);
         $student->update($validatedData);
 

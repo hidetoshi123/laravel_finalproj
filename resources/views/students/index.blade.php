@@ -75,6 +75,56 @@
             <div class="col-md-8">
                 <div class="container-fluid">
                     <h1 class="mb-4">Students</h1>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <form method="GET" action="{{ route('students.index') }}">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="search" placeholder="Search students by name" value="{{ request()->query('search') }}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        @if(request()->query('search'))
+                    </div>
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Profile Picture</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Grade</th>
+                                    <th>Contact</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($students as $student)
+                                    @if(stripos($student->name, request()->query('search')) !== false)
+                                        <tr>
+                                            <td>{{ $student->id }}</td>
+                                            <td class="text-center"><img src="{{ asset('storage/' . $student->profile_picture) }}" alt="Profile Picture" width="150" height="150" class="img-thumbnail"></td>
+                                            <td>{{ $student->name }}</td>
+                                            <td>{{ $student->age }}</td>
+                                            <td>{{ $student->grade }}</td>
+                                            <td>{{ $student->contact }}</td>
+                                            <td>
+                                                <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">View</a>
+                                                <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                     <table class="table table-bordered table-striped">
                         <thead class="thead-dark">
                             <tr>
@@ -84,7 +134,6 @@
                                 <th>Age</th>
                                 <th>Grade</th>
                                 <th>Contact</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,15 +145,6 @@
                                     <td>{{ $student->age }}</td>
                                     <td>{{ $student->grade }}</td>
                                     <td>{{ $student->contact }}</td>
-                                    <td>
-                                        <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">View</a>
-                                        <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
